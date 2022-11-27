@@ -96,12 +96,118 @@
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+
+      try {
+        output.value = eval(`${firstNum} ${operator} ${secondNum}`); 
+      }
+
+      catch(err) {
+        throw new SyntaxError("Invalid or unexpected token");
+      }
+
+      finally {
+        console.log("Have a nice day!");
+      }
     });
+
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    errorBtns[0].addEventListener('click', () => {
+      console.log("Console Log Message");
+    });
+
+    errorBtns[1].addEventListener('click', () => {
+      console.error("Console Error!");
+    });
+
+    errorBtns[2].addEventListener('click', () => {
+      console.count("Count Button");
+    });
+
+    errorBtns[3].addEventListener('click', () => {
+      console.warn("WARNING! WARNING!");
+    });
+
+    errorBtns[4].addEventListener('click', () => {
+      console.assert(2 === 3, "The number does not equal 3")
+    });
+
+    errorBtns[5].addEventListener('click', () => {
+      console.clear();
+    });
+
+    errorBtns[6].addEventListener('click', () => {
+      console.dir(errorBtns[6]);
+    });
+
+    errorBtns[7].addEventListener('click', () => {
+      console.dirxml(errorBtns[7]);
+    });
+
+    errorBtns[8].addEventListener('click', () => {
+      console.group("Console Group");
+    });
+
+    errorBtns[9].addEventListener('click', () => {
+      console.groupEnd();
+    });
+
+    errorBtns[10].addEventListener('click', () => {
+      console.table(["Watermelon", "Dragonfruit", "Mango"])
+    });
+
+    errorBtns[11].addEventListener('click', () => {
+      console.time("Timer Button");
+    });
+
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd("Timer Button");
+    });
+
+    errorBtns[13].addEventListener('click', () => {
+      function tired() {
+        function very() {
+          function am() {
+            function i() {
+              console.trace();
+            }
+            i();
+          }
+          am();
+        }
+        very();
+      }
+      tired();
+    });
+
+    class CustomError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "CustomError";
+      }
+    }
+
+    errorBtns[14].addEventListener('click', () => {
+      try {
+        // undeclared variables
+        num = fakenum;
+      }
+      catch (err) {
+        throw new CustomError("Cool new error!");
+      }
+    });
+
+    window.onerror = () =>// then one exists
+    {
+        console.log("An error has been caught :(");
+    }
+
+
+
   </script>
 </body>
 
